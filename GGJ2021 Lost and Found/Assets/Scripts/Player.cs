@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        if (!GameController.IsInitialized)
+        {
+            SceneManager.LoadScene(0);
+        }
+
         if (grab_indicator != null) { grab_indicator.gameObject.SetActive(false); }
 
         speed = walk_speed;
@@ -34,7 +40,7 @@ public class Player : MonoBehaviour
             HandleInput(out direction);
 
             transform.Translate(direction * speed * Time.deltaTime);
-        }     
+        }
     }
 
     private void HandleInput(out Vector3 direction)
@@ -93,7 +99,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && drag_routine == null)
         {
-            drag_routine = StartCoroutine(DragRoutine(collision.gameObject));
+            Stealable stealable_script = collision.GetComponent<Stealable>();
+            drag_routine = StartCoroutine(DragRoutine(collision.gameObject, stealable_script));
         }
     }
 
@@ -105,24 +112,28 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator DragRoutine(GameObject stealable)
+    private IEnumerator DragRoutine(GameObject stealable, Stealable stealable_script)
     {
         Vector3 offset = stealable.transform.position - transform.position;
+        stealable_script.StartParticle();
         grab_indicator.gameObject.SetActive(false);
         speed = drag_speed;
 
-        while (state == PlayerState.ACTIVE)
+        while (Input.GetKey(KeyCode.Space))
         {
-            while (Input.GetKey(KeyCode.Space))
-            {
-                stealable.transform.position = transform.position + offset;
+            stealable.transform.position = transform.position + offset;
 
-                yield return null;
+            if (state == PlayerState.INACTIVE)
+            {
+                break;
             }
+
+            yield return null;
         }
 
         drag_routine = null;
         speed = walk_speed;
         grab_indicator.gameObject.SetActive(true);
+        stealable_script.StopParticle();
     }
 }
