@@ -12,14 +12,18 @@ public class Player : MonoBehaviour
     }
 
     private PlayerState state;
+    private Coroutine drag_routine;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform grab_indicator;
     [SerializeField] private float walk_speed;
     [SerializeField] private float drag_speed;
+    private float speed;
 
     private void Awake()
     {
         if (grab_indicator != null) { grab_indicator.gameObject.SetActive(false); }
+
+        speed = walk_speed;
     }
 
     private void FixedUpdate()
@@ -27,23 +31,7 @@ public class Player : MonoBehaviour
         Vector3 direction;
         HandleInput(out direction);
 
-        transform.Translate(direction * walk_speed * Time.deltaTime);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Stealable"))
-        {
-            grab_indicator.gameObject.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Stealable"))
-        {
-            grab_indicator.gameObject.SetActive(false);
-        }
+        transform.Translate(direction * speed * Time.deltaTime);
     }
 
     private void HandleInput(out Vector3 direction)
@@ -69,5 +57,47 @@ public class Player : MonoBehaviour
         {
             direction.x = 1f;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stealable") && drag_routine == null)
+        {
+            grab_indicator.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetKey(KeyCode.Space) && drag_routine == null)
+        {
+            drag_routine = StartCoroutine(DragRoutine(collision.gameObject));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stealable") && drag_routine == null)
+        {
+            grab_indicator.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator DragRoutine(GameObject stealable)
+    {
+        Vector3 offset = stealable.transform.position - transform.position;
+        grab_indicator.gameObject.SetActive(false);
+        speed = drag_speed;
+
+        while (Input.GetKey(KeyCode.Space))
+        {
+            stealable.transform.position = transform.position + offset;
+
+            yield return null;
+        }
+
+        drag_routine = null;
+        speed = walk_speed;
+        grab_indicator.gameObject.SetActive(true);
     }
 }
