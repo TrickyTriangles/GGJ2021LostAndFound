@@ -9,11 +9,18 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SceneManager.LoadScene(2);
+            MoveToScene("_BEN_TESTINGSCENE");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SceneManager.LoadScene(3);
+            MoveToScene("SampleScene");
         }
+    }
+
+    private void MoveToScene(string name)
+    {
+        GameController.Instance.RestartTimer();
+        GameController.Instance.StartTimer();
+        SceneManager.LoadScene(name);
     }
 }
