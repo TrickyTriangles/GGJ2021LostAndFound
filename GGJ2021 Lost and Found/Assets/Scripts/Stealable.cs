@@ -13,8 +13,6 @@ public class Stealable : MonoBehaviour
         {
             if (!level_manager.GetIsGameComplete())
             {
-                GameController.Instance.SetGameComplete(true);
-                GameController.Instance.SetGameWon(true);
                 level_manager.CompleteLevel();
             }
         }

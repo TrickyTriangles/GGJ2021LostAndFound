@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private PlayerState state;
     private Coroutine drag_routine;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform grab_indicator;
     [SerializeField] private float walk_speed;
     [SerializeField] private float drag_speed;
@@ -66,6 +67,9 @@ public class Player : MonoBehaviour
         {
             direction.x = 1f;
         }
+
+        animator.SetInteger("dirX", (int)direction.x);
+        animator.SetInteger("dirY", (int)direction.y);
     }
 
     /// <summary>
@@ -102,6 +106,7 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.Space) && drag_routine == null)
             {
                 Stealable stealable_script = collision.GetComponent<Stealable>();
+                animator.SetBool("is_dragging", true);
                 drag_routine = StartCoroutine(DragRoutine(collision.gameObject, stealable_script));
             }
         }
@@ -138,5 +143,6 @@ public class Player : MonoBehaviour
         speed = walk_speed;
         grab_indicator.gameObject.SetActive(true);
         stealable_script.StopParticle();
+        animator.SetBool("is_dragging", false);
     }
 }

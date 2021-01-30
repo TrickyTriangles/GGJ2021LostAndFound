@@ -8,6 +8,9 @@ using TMPro;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timer_readout;
+    [SerializeField] private Player player;
+    [SerializeField] private Image fade_to_black;
+    [SerializeField] private float fadeout_time = 3f;
     private bool is_game_active;
 
     private void Start()
@@ -29,9 +32,24 @@ public class LevelManager : MonoBehaviour
 
     public void CompleteLevel()
     {
+        if (player != null)
+        {
+            player.SetInactive();
+        }
+
         is_game_active = false;
+        GameController.Instance.SetGameComplete(true);
         GameController.Instance.SetGameWon(true);
-        StartCoroutine(GameEndRoutine());
+        GameController.Instance.StopTimer();
+
+        if (fade_to_black != null)
+        {
+            StartCoroutine(GameEndRoutine());
+        }
+        else
+        {
+            SceneManager.LoadScene("GameEnd");
+        }
     }
 
     private IEnumerator GameRoutine()
@@ -44,9 +62,19 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator GameEndRoutine()
     {
-        GameController.Instance.StopTimer();
-        yield return null;
+        float timer = 0f;
+        Color fade_color = Color.black;
 
+        while (timer < fadeout_time)
+        {
+            timer += Time.deltaTime;
+            fade_color.a = Mathf.Clamp(timer / fadeout_time, 0f, 1f);
+            fade_to_black.color = fade_color;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("GameEnd");
     }
 }
