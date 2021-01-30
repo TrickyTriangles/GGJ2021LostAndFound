@@ -13,7 +13,12 @@ public class MainMenu : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            MoveToScene("SampleScene");
+            MoveToScene("Museum");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 

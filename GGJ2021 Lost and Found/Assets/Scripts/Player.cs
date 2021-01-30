@@ -97,10 +97,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKey(KeyCode.Space) && drag_routine == null)
+        if (collision.gameObject.CompareTag("Stealable"))
         {
-            Stealable stealable_script = collision.GetComponent<Stealable>();
-            drag_routine = StartCoroutine(DragRoutine(collision.gameObject, stealable_script));
+            if (Input.GetKey(KeyCode.Space) && drag_routine == null)
+            {
+                Stealable stealable_script = collision.GetComponent<Stealable>();
+                drag_routine = StartCoroutine(DragRoutine(collision.gameObject, stealable_script));
+            }
         }
     }
 

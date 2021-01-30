@@ -16,7 +16,10 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        timer_readout.text = GameController.Instance.GetGameTimerReadout();
+        if (GameController.IsInitialized)
+        {
+            timer_readout.text = GameController.Instance.GetGameTimerReadout();
+        }
     }
 
     public bool GetIsGameComplete()

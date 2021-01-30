@@ -6,8 +6,6 @@ public class Stealable : MonoBehaviour
 {
     [SerializeField] private ParticleSystem dust_particle;
     [SerializeField] private LevelManager level_manager;
-    [SerializeField] private BoxCollider2D my_collider;
-    [SerializeField] private BoxCollider2D goal_collider;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,11 +22,17 @@ public class Stealable : MonoBehaviour
 
     public void StartParticle()
     {
-        dust_particle.Play();
+        if (dust_particle != null)
+        {
+            dust_particle.Play();
+        }
     }
 
     public void StopParticle()
     {
-        dust_particle.Stop();
+        if (dust_particle != null)
+        {
+            dust_particle.Stop();
+        }
     }
 }
