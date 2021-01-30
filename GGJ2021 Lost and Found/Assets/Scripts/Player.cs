@@ -6,9 +6,8 @@ public class Player : MonoBehaviour
 {
     private enum PlayerState
     {
-        STAND,
-        WALK,
-        DRAG
+        ACTIVE,
+        INACTIVE
     }
 
     private PlayerState state;
@@ -24,14 +23,18 @@ public class Player : MonoBehaviour
         if (grab_indicator != null) { grab_indicator.gameObject.SetActive(false); }
 
         speed = walk_speed;
+        state = PlayerState.ACTIVE;
     }
 
     private void FixedUpdate()
     {
-        Vector3 direction;
-        HandleInput(out direction);
+        if (state == PlayerState.ACTIVE)
+        {
+            Vector3 direction;
+            HandleInput(out direction);
 
-        transform.Translate(direction * speed * Time.deltaTime);
+            transform.Translate(direction * speed * Time.deltaTime);
+        }     
     }
 
     private void HandleInput(out Vector3 direction)
@@ -57,6 +60,25 @@ public class Player : MonoBehaviour
         {
             direction.x = 1f;
         }
+    }
+
+    /// <summary>
+    /// Call this method whenever the player needs to enter a losing state / animation
+    /// </summary>
+    public void GetCaught()
+    {
+        // Other game over stuff here
+        SetInactive();
+    }
+
+    public void SetActive()
+    {
+        state = PlayerState.ACTIVE;
+    }
+
+    public void SetInactive()
+    {
+        state = PlayerState.INACTIVE;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -89,11 +111,14 @@ public class Player : MonoBehaviour
         grab_indicator.gameObject.SetActive(false);
         speed = drag_speed;
 
-        while (Input.GetKey(KeyCode.Space))
+        while (state == PlayerState.ACTIVE)
         {
-            stealable.transform.position = transform.position + offset;
+            while (Input.GetKey(KeyCode.Space))
+            {
+                stealable.transform.position = transform.position + offset;
 
-            yield return null;
+                yield return null;
+            }
         }
 
         drag_routine = null;
