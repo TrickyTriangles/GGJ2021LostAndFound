@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -8,22 +9,26 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timer_readout;
     private bool is_game_active;
-    private Timer timer;
 
     private void Start()
     {
-        timer = new Timer();
     }
 
     private void Update()
     {
-        timer.AddTime(Time.deltaTime);
-        timer_readout.text = timer.GetTimeReadout();
+        timer_readout.text = GameController.Instance.GetGameTimerReadout();
+    }
+
+    public bool GetIsGameComplete()
+    {
+        return is_game_active;
     }
 
     public void CompleteLevel()
     {
         is_game_active = false;
+        GameController.Instance.SetGameWon(true);
+        StartCoroutine(GameEndRoutine());
     }
 
     private IEnumerator GameRoutine()
@@ -33,22 +38,32 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+
+    private IEnumerator GameEndRoutine()
+    {
+        GameController.Instance.StopTimer();
+        yield return null;
+
+        SceneManager.LoadScene("GameEnd");
+    }
 }
 
 public class Timer
 {
-    private int minutes;
-    private int seconds;
-    private float centiseconds;
+    private bool is_active;
+    private int minutes = 0;
+    private int seconds = 0;
+    private float centiseconds = 0f;
 
-    public Timer()
+    public void Update()
     {
-        minutes = 0;
-        seconds = 0;
-        centiseconds = 0;
+        if (is_active)
+        {
+            AddTime(Time.deltaTime);
+        }
     }
 
-    public void AddTime(float deltaTime)
+    private void AddTime(float deltaTime)
     {
         centiseconds += deltaTime;
 
@@ -63,6 +78,23 @@ public class Timer
                 seconds -= 60;
             }
         }
+    }
+
+    public void RestartTimer()
+    {
+        minutes = 0;
+        seconds = 0;
+        centiseconds = 0;
+    }
+
+    public void StartTimer()
+    {
+        is_active = true;
+    }
+
+    public void StopTimer()
+    {
+        is_active = false;
     }
 
     public string GetTimeReadout()

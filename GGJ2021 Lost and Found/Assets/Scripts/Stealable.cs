@@ -6,18 +6,20 @@ public class Stealable : MonoBehaviour
 {
     [SerializeField] private ParticleSystem dust_particle;
     [SerializeField] private LevelManager level_manager;
-    private Vector3 last_pos;
-
-    private void Start()
-    {
-        last_pos = transform.position;
-    }
+    [SerializeField] private BoxCollider2D my_collider;
+    [SerializeField] private BoxCollider2D goal_collider;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameController.Instance.SetGameComplete(true);
-        GameController.Instance.SetGameWon(true);
-        level_manager.CompleteLevel();
+        if (collision.gameObject.CompareTag("Exit"))
+        {
+            if (!level_manager.GetIsGameComplete())
+            {
+                GameController.Instance.SetGameComplete(true);
+                GameController.Instance.SetGameWon(true);
+                level_manager.CompleteLevel();
+            }
+        }
     }
 
     public void StartParticle()
