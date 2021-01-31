@@ -9,8 +9,8 @@ public class SecurityGuard : MonoBehaviour
     [SerializeField] private Vector3[] route_nodes;
     [SerializeField] private Transform flashlight;
     [SerializeField] private float flashlight_swing;
+    [SerializeField]private LevelManager level_manager;
     private bool is_active;
-    private LevelManager level_manager;
     private Coroutine guard_routine;
 
     private void Start()
@@ -40,7 +40,6 @@ public class SecurityGuard : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, route_nodes[active_node], walk_speed * Time.deltaTime);
                 distance_to_point = route_nodes[active_node] - transform.position;
-                Debug.Log(distance_to_point.magnitude + ", active_node: " + active_node);
 
                 animator.SetFloat("dirX", distance_to_point.normalized.x);
                 animator.SetFloat("dirY", distance_to_point.normalized.y);
@@ -71,7 +70,7 @@ public class SecurityGuard : MonoBehaviour
     private IEnumerator GuardSwingRoutine()
     {
         float timer = 0f;
-        animator.SetBool("player_caught", true);
+        animator.SetBool("caught_player", true);
 
         while (timer < animator.GetCurrentAnimatorStateInfo(0).length)
         {

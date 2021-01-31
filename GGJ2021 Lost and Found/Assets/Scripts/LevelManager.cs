@@ -203,7 +203,7 @@ public class Timer
             seconds++;
             centiseconds -= 1f;
 
-            while (seconds > 60)
+            while (seconds > 59)
             {
                 minutes++;
                 seconds -= 60;
