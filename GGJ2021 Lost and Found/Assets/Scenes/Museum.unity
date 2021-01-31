@@ -2761,7 +2761,7 @@ PrefabInstance:
     - target: {fileID: 3278179960029085123, guid: 65b54f65e92952247a2180db59f9c53e,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3278179960679415898, guid: 65b54f65e92952247a2180db59f9c53e,
         type: 3}
@@ -3103,6 +3103,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 85325690764227584, guid: b9f4c98ac6de5cd4d97841b5f5aafcce,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 85325690764227585, guid: b9f4c98ac6de5cd4d97841b5f5aafcce,
         type: 3}
       propertyPath: ShapeModule.type
