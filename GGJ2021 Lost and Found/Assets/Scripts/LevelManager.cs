@@ -26,8 +26,12 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        bgm_normal.volume = GameController.Instance.GetBGMVolume();
-        bgm_sneak.volume = 0f;
+        if (bgm_normal != null && bgm_sneak != null)
+        {
+            bgm_normal.volume = GameController.Instance.GetBGMVolume();
+            bgm_sneak.volume = 0f;
+        }
+
         level_state = LevelState.NORMAL;
     }
 
@@ -55,7 +59,10 @@ public class LevelManager : MonoBehaviour
                 StopCoroutine(crossfade_routine);
             }
 
-            crossfade_routine = StartCoroutine(BGMCrossfadeRoutine());
+            if (bgm_normal != null && bgm_sneak != null)
+            {
+                crossfade_routine = StartCoroutine(BGMCrossfadeRoutine());
+            }
         }
     }
 
@@ -71,6 +78,30 @@ public class LevelManager : MonoBehaviour
 
         GameController.Instance.SetGameComplete(true);
         GameController.Instance.SetGameWon(true);
+        GameController.Instance.StopTimer();
+
+        if (fade_to_black != null)
+        {
+            StartCoroutine(GameEndRoutine());
+        }
+        else
+        {
+            SceneManager.LoadScene("GameEnd");
+        }
+    }
+
+    public void FailLevel()
+    {
+        if (player != null)
+        {
+            player.SetInactive();
+        }
+
+        ChangeLevelState(LevelState.FADEOUT);
+        is_game_active = false;
+
+        GameController.Instance.SetGameComplete(true);
+        GameController.Instance.SetGameWon(false);
         GameController.Instance.StopTimer();
 
         if (fade_to_black != null)
