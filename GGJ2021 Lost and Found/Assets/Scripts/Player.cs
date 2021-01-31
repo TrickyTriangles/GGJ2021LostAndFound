@@ -105,6 +105,19 @@ public class Player : MonoBehaviour
             grab_indicator.gameObject.SetActive(true);
         }
         */
+
+        if (collision.gameObject.CompareTag("Guard"))
+        {
+            SetInactive();
+            SecurityGuard guard = collision.gameObject.GetComponent<SecurityGuard>();
+
+            if (guard == null)
+            {
+                guard = collision.gameObject.GetComponentInParent<SecurityGuard>();
+            }
+
+            guard.CatchPlayer();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
