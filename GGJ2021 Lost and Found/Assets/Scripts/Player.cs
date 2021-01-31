@@ -112,6 +112,24 @@ public class Player : MonoBehaviour
                 drag_routine = StartCoroutine(DragRoutine(collision.gameObject, stealable_script));
             }
         }
+
+        
+        else if(collision.gameObject.CompareTag("Knockable"))
+        {
+
+
+            if(Input.GetKey(KeyCode.Space))
+            {
+                TrackKnock track_knock = collision.GetComponent<TrackKnock>();
+
+                if (track_knock.touchOnce == false)
+                {
+                    track_knock.touchOnce = true;
+                }
+                
+            }
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -148,4 +166,6 @@ public class Player : MonoBehaviour
         animator.SetBool("is_dragging", false);
         level_manager.ChangeLevelState(LevelManager.LevelState.NORMAL);
     }
+
+
 }
