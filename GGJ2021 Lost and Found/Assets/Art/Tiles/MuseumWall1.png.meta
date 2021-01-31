@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: 2983325789478174301
     second: MuseumWall1_2
+  - first:
+      213: -3543618911436040383
+    second: MuseumWall1_3
+  - first:
+      213: 7387950349728735417
+    second: MuseumWall1_4
+  - first:
+      213: 8731025314397065226
+    second: MuseumWall1_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -120,8 +129,8 @@ TextureImporter:
       name: MuseumWall1_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
+        x: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -142,7 +151,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -154,6 +163,69 @@ TextureImporter:
       bones: []
       spriteID: d5ebb1bcff6e66920800000000000000
       internalID: 2983325789478174301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MuseumWall1_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1479f7cff5982dec0800000000000000
+      internalID: -3543618911436040383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MuseumWall1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b0edc533b5478660800000000000000
+      internalID: 7387950349728735417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MuseumWall1_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a009495b345da2970800000000000000
+      internalID: 8731025314397065226
       vertices: []
       indices: 
       edges: []

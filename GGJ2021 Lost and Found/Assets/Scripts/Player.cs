@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     private PlayerState state;
     private Coroutine drag_routine;
+    [SerializeField] private LevelManager level_manager;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform grab_indicator;
@@ -107,6 +108,7 @@ public class Player : MonoBehaviour
             {
                 Stealable stealable_script = collision.GetComponent<Stealable>();
                 animator.SetBool("is_dragging", true);
+                level_manager.ChangeLevelState(LevelManager.LevelState.SNEAK);
                 drag_routine = StartCoroutine(DragRoutine(collision.gameObject, stealable_script));
             }
         }
@@ -144,5 +146,6 @@ public class Player : MonoBehaviour
         grab_indicator.gameObject.SetActive(true);
         stealable_script.StopParticle();
         animator.SetBool("is_dragging", false);
+        level_manager.ChangeLevelState(LevelManager.LevelState.NORMAL);
     }
 }

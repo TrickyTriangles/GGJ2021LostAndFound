@@ -7,6 +7,7 @@ public class GameController : Singleton<GameController>
 {
     [SerializeField] private AudioSource audio_source;
     private Timer game_timer;
+    private float bgm_volume = 0.5f;
     private bool is_game_complete;
     private bool is_game_won;
 
@@ -28,6 +29,22 @@ public class GameController : Singleton<GameController>
         game_timer.StartTimer();
         is_game_complete = false;
         is_game_won = false;
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        audio_source.PlayOneShot(clip);
+    }
+
+    public void SetBGMVolume(float vol)
+    {
+        bgm_volume = Mathf.Clamp01(vol);
+        audio_source.volume = bgm_volume;
+    }
+
+    public float GetBGMVolume()
+    {
+        return bgm_volume;
     }
 
     public void SetGameComplete(bool gc)
