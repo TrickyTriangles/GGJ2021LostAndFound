@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 50729757}
   m_Layer: 0
   m_Name: Mask1
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 78123998}
   m_Layer: 0
   m_Name: Goblet1
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 234858463}
   m_Layer: 0
   m_Name: Head2
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 405314538}
   m_Layer: 5
   m_Name: FadeTransition
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -783,7 +783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.299988, y: 1.3399963}
+  m_AnchoredPosition: {x: -10.299988, y: 1.3399658}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405314538
@@ -1606,7 +1606,7 @@ GameObject:
   - component: {fileID: 1159197877}
   m_Layer: 0
   m_Name: Vase1
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1689,7 +1689,7 @@ GameObject:
   - component: {fileID: 1159472153}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1874,7 +1874,7 @@ GameObject:
   - component: {fileID: 1325905405}
   m_Layer: 0
   m_Name: Candy1
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6409,7 +6409,7 @@ GameObject:
   - component: {fileID: 1607492762}
   m_Layer: 0
   m_Name: Lamp1
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6953,7 +6953,7 @@ GameObject:
   - component: {fileID: 1870419060}
   m_Layer: 0
   m_Name: Tiki1
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7447,7 +7447,7 @@ GameObject:
   - component: {fileID: 2088699404}
   m_Layer: 0
   m_Name: Ring1
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7529,7 +7529,7 @@ GameObject:
   - component: {fileID: 2089409901}
   m_Layer: 0
   m_Name: Tilemap Floor
-  m_TagString: Untagged
+  m_TagString: Knockable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
