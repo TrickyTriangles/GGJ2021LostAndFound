@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/_BEN_TESTINGSCENE.unity
     guid: 8953c16d097952c48adec43a4342f7be
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Museum.unity
+    guid: bc9e09f473b08a54b8654466e74a491f
   - enabled: 1
     path: Assets/Scenes/GameEnd.unity
     guid: ca2a81b9da9809d42adfe4a207ec691f
