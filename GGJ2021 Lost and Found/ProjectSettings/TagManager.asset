@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Stealable
   - Exit
-  - Knockable
+  - Guard
   layers:
   - Default
   - TransparentFX
