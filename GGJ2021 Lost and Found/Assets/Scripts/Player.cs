@@ -99,6 +99,12 @@ public class Player : MonoBehaviour
         {
             grab_indicator.gameObject.SetActive(true);
         }
+        /*
+        if (collision.gameObject.CompareTag("Knockable"))
+        {
+            grab_indicator.gameObject.SetActive(true);
+        }
+        */
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -125,7 +131,6 @@ public class Player : MonoBehaviour
 
                 if (track_knock.touchOnce == false)
                 {
-                    track_knock.touchOnce = true;
                     track_knock.Wabble();
                 }
                 

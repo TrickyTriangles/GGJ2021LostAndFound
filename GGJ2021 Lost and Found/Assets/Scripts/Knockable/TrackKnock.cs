@@ -14,22 +14,31 @@ public class TrackKnock : MonoBehaviour
 
     public void Wabble()
     {
-        if(wabble_routine != null)
+        
+        if (wabble_routine != null)
         {
             StopCoroutine(wabble_routine);
         }
+        
         wabble_routine = StartCoroutine(WabbleThing());
     }
 
     public IEnumerator WabbleThing()
     {
+        touchOnce = true;
         bool stillWabble = true;
 
         while(stillWabble)
         {
             float current_rotation = transform.rotation.z;
             // flip rotation direction
-            if(current_rotation > Mathf.Abs(rotate_dir * rotate_degree))
+            if(rotate_dir == 1f && current_rotation > (rotate_dir * rotate_degree))
+            {
+                rotate_dir *= -1f;
+                rotate_degree -= 5f;
+                lerp_speed += 0.02f;
+            }
+            else if(rotate_dir == -1f && current_rotation < (rotate_dir * rotate_degree))
             {
                 rotate_dir *= -1f;
                 rotate_degree -= 5f;
