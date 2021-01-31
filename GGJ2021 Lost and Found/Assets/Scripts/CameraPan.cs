@@ -8,8 +8,9 @@ public class CameraPan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vector3 direction ;
-        //direction.y = 1f;
-        //transform.Translate(direction * Time.deltaTime);
+        //Vector3 startPos = transform.position;
+        transform.Translate(Vector3.up * Time.deltaTime);
+
+       // transform.position = startPos;
     }
 }

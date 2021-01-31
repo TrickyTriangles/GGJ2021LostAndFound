@@ -10,7 +10,7 @@ public class TrackKnock : MonoBehaviour
 
     float rotate_dir = 1f;
     float rotate_degree = 30f;
-    float lerp_speed = 0.01f;
+    float lerp_speed = 0.2f;
 
     public void Wabble()
     {
@@ -28,24 +28,30 @@ public class TrackKnock : MonoBehaviour
         touchOnce = true;
         bool stillWabble = true;
 
-        while(stillWabble)
+        float current_rotation = 0f;
+        while (stillWabble)
         {
-            float current_rotation = transform.rotation.z;
+
+            //Debug.Log(transform.rotation.z);
+
+            float distance_to_target = (rotate_dir * rotate_degree) - current_rotation;
             // flip rotation direction
-            if(rotate_dir == 1f && current_rotation > (rotate_dir * rotate_degree))
+            if (Mathf.Abs(distance_to_target) < 0.1f)
             {
                 rotate_dir *= -1f;
                 rotate_degree -= 5f;
                 lerp_speed += 0.02f;
             }
-            else if(rotate_dir == -1f && current_rotation < (rotate_dir * rotate_degree))
+            /*
+            else if(rotate_dir == 1f && current_rotation >= (rotate_dir * rotate_degree))
             {
                 rotate_dir *= -1f;
                 rotate_degree -= 5f;
                 lerp_speed += 0.02f;
             }
-            float new_angle = Mathf.Lerp(transform.rotation.z, rotate_dir * rotate_degree, lerp_speed);
-            Quaternion new_rotation = Quaternion.Euler(0f, 0f, new_angle);
+            */
+            current_rotation = Mathf.Lerp(current_rotation, rotate_dir * rotate_degree, lerp_speed);
+            Quaternion new_rotation = Quaternion.Euler(0f, 0f, current_rotation);
 
             transform.rotation = new_rotation;
 
