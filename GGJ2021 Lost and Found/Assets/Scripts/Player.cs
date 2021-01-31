@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     private PlayerState state;
     private Coroutine drag_routine;
+
     [SerializeField] private LevelManager level_manager;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
@@ -112,6 +113,25 @@ public class Player : MonoBehaviour
                 drag_routine = StartCoroutine(DragRoutine(collision.gameObject, stealable_script));
             }
         }
+
+        
+        else if(collision.gameObject.CompareTag("Knockable"))
+        {
+
+
+            if(Input.GetKey(KeyCode.Space))
+            {
+                TrackKnock track_knock = collision.GetComponent<TrackKnock>();
+
+                if (track_knock.touchOnce == false)
+                {
+                    track_knock.touchOnce = true;
+                    track_knock.Wabble();
+                }
+                
+            }
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -148,4 +168,6 @@ public class Player : MonoBehaviour
         animator.SetBool("is_dragging", false);
         level_manager.ChangeLevelState(LevelManager.LevelState.NORMAL);
     }
+
+
 }
