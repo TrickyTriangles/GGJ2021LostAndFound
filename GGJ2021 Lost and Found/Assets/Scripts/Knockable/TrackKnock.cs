@@ -10,7 +10,7 @@ public class TrackKnock : MonoBehaviour
 
     float rotate_dir = 1f;
     float rotate_degree = 30f;
-    float lerp_speed = 0.04f;
+    float lerp_speed = 0.01f;
 
     public void Wabble()
     {
