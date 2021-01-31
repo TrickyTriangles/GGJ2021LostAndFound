@@ -101,7 +101,7 @@ public class LevelManager : MonoBehaviour
                 while (bgm_normal.volume < target_volume && bgm_sneak.volume > 0f)
                 {
                     bgm_normal.volume = Mathf.MoveTowards(bgm_normal.volume, target_volume, 0.2f * Time.deltaTime);
-                    bgm_sneak.volume = Mathf.MoveTowards(bgm_sneak.volume, 0f, 0.1f * Time.deltaTime);
+                    bgm_sneak.volume = Mathf.MoveTowards(bgm_sneak.volume, 0f, 0.2f * Time.deltaTime);
                     yield return null;
                 }
                 break;
@@ -109,7 +109,7 @@ public class LevelManager : MonoBehaviour
                 while (bgm_normal.volume > 0f && bgm_sneak.volume < target_volume)
                 {
                     bgm_normal.volume = Mathf.MoveTowards(bgm_normal.volume, 0f, 0.2f * Time.deltaTime);
-                    bgm_sneak.volume = Mathf.MoveTowards(bgm_sneak.volume, target_volume, 0.1f * Time.deltaTime);
+                    bgm_sneak.volume = Mathf.MoveTowards(bgm_sneak.volume, target_volume, 0.2f * Time.deltaTime);
                     yield return null;
                 }
                 break;

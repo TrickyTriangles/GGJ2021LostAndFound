@@ -6,6 +6,7 @@ public class Stealable : MonoBehaviour
 {
     [SerializeField] private ParticleSystem dust_particle;
     [SerializeField] private LevelManager level_manager;
+    [SerializeField] private AudioSource drag_sound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,6 +25,11 @@ public class Stealable : MonoBehaviour
         {
             dust_particle.Play();
         }
+
+        if (drag_sound != null)
+        {
+            drag_sound.Play();
+        }
     }
 
     public void StopParticle()
@@ -31,6 +37,11 @@ public class Stealable : MonoBehaviour
         if (dust_particle != null)
         {
             dust_particle.Stop();
+        }
+
+        if (drag_sound != null)
+        {
+            drag_sound.Stop();
         }
     }
 }
