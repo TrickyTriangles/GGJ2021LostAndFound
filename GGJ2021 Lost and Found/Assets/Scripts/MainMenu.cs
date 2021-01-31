@@ -15,15 +15,6 @@ public class MainMenu : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            MoveToScene("_BEN_TESTINGSCENE");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            MoveToScene("Museum");
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
