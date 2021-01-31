@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     private PlayerState state;
     private Coroutine drag_routine;
+
     [SerializeField] private LevelManager level_manager;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
@@ -125,6 +126,7 @@ public class Player : MonoBehaviour
                 if (track_knock.touchOnce == false)
                 {
                     track_knock.touchOnce = true;
+                    track_knock.Wabble();
                 }
                 
             }
